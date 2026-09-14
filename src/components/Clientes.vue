@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from 'vue';
 import { RouterLink } from 'vue-router';
-import ConfirmModal from './UI/ConfirmModal.vue'
 const props = defineProps({
   cliente: {
     type: Object,
@@ -45,12 +44,11 @@ const clienteEstado = computed(() => {
 
         <button class="bg-red-500 hover:bg-red-600 transition-all duration-300 hover:shadow-[0_0_15px_rgba(239,68,68,0.7)]
           hover:shadow-red-500/50 text-indigo-100 font-bold py-2 px-4 rounded text-xs cursor-pointer"
-          @click="$emit('eliminar-cliente', cliente.id)">
+          @click="$emit('eliminar-cliente', cliente.id, nombreCliente)">
           Eliminar
         </button>
       </div>
 
     </td>
   </tr>
-  <ConfirmModal />
 </template>
