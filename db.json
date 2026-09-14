@@ -11,14 +11,13 @@
       "estado": false
     },
     {
-      "nombre": "Maria",
-      "apellido": "Jonas",
-      "correo": "mariaJ@empresa.com",
-      "empresa": "",
-      "puesto": "",
-      "telefono": "",
-      "id": "7mLcSlixyVg",
-      "estado": true
+      "nombre": "Juliet",
+      "apellido": "Varinas",
+      "correo": "juliet@empresa.com",
+      "empresa": "Sport",
+      "puesto": "Marketing",
+      "estado": true,
+      "id": "TV68BBpE7sM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

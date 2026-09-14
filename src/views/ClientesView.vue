@@ -36,6 +36,16 @@ const cambiarEstado = (id, estado) => {
     })
     .catch(error => console.log('Error al cambiar estado: ', error))
 };
+
+const eliminarCliente = id => {
+  if (confirm('¿Quieres eliminar este cliente?')) {
+    ClienteService.eliminarCliente(id)
+      .then(() => {
+        clientes.value = clientes.value.filter(cliente => cliente.id !== id)
+      })
+      .catch(error => console.log('Error al eliminar cliente: ', error))
+  }
+}
 </script>
 
 <template>
@@ -62,7 +72,7 @@ const cambiarEstado = (id, estado) => {
               <tbody class="divide-y divide-gray-200 bg-white">
                 <!--Componente Clientes-->
                 <Clientes v-for="cliente in clientes" :key="cliente.id" :cliente="cliente"
-                  @cambiar-estado="cambiarEstado" />
+                  @cambiar-estado="cambiarEstado" @eliminar-cliente="eliminarCliente" />
               </tbody>
             </table>
 
