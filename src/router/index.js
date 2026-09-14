@@ -12,7 +12,7 @@ const router = createRouter({
         titulo: 'Listado de Clientes'
       }
     },
-        {
+    {
       path: '/agregar-cliente',
       name: 'agregar-cliente',
       component: () => import('../views/NuevoClienteView.vue'),

@@ -17,13 +17,10 @@ defineProps({
 
     <Heading>{{ titulo }}</Heading>
 
-    <div class="mx-auto my-8 bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
-      <div class="mx-auto w-full lg:w-4/5 py-10 px-8 sm:px-12">
-        <FormKit
-          type="form"
-          submit-label="Agregar Cliente"
-          incomplete-message="Completa los Campos Requeridos"
-        >
+    <div
+      class="mx-auto my-8 bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
+      <div class="mx-auto w-full py-10 px-8 sm:px-12">
+        <FormKit type="form" submit-label="Agregar Cliente" incomplete-message="Completa los Campos Requeridos">
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
             <FormKit
