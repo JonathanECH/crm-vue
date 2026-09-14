@@ -1,14 +1,25 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive } from 'vue';
+import { useRouter } from 'vue-router';
+import axios from '../lib/axios';
 import RouterLink from '@/components/UI/RouterLink.vue';
 import Heading from '@/components/UI/HeadingVue.vue';
+import Alerta from '@/components/UI/AlertaVue.vue';
 import { FormKit } from '@formkit/vue';
+
+const router = useRouter();
 
 defineProps({
   titulo: {
     type: String
   },
-})
+});
+
+const alerta = reactive({
+  mostrar: false,
+  tipo: 'success',
+  mensaje: ''
+});
 
 const cliente = reactive({
   nombre: '',
@@ -17,20 +28,52 @@ const cliente = reactive({
   telefono: '',
   empresa: '',
   puesto: '',
-})
+});
 
-const handleSubmit = (datos) => {
-  console.log(datos);
-}
+const handleSubmit = (data) => {
+  axios.post('/clientes', data)
+    .then(() => {
+      alerta.tipo = 'success';
+      alerta.mensaje = '¡El cliente se ha registrado con éxito! Redirigiendo al listado...';
+      alerta.mostrar = true;
+
+      setTimeout(() => {
+        alerta.mostrar = false;
+        router.push({ name: 'listado-clientes' });
+      }, 4000);
+    })
+    .catch((error) => {
+      console.error('Error al guardar el cliente:', error);
+      alerta.tipo = 'error';
+      alerta.mensaje = 'Hubo un error al registrar el cliente. Por favor, intenta nuevamente.';
+      alerta.mostrar = true;
+
+      setTimeout(() => {
+        alerta.mostrar = false;
+      }, 4000);
+    });
+};
 </script>
 
 <template>
   <div>
     <div class="flex justify-end mb-6">
-      <RouterLink to="inicio">Volver</RouterLink>
+      <RouterLink to="listado-clientes">Volver</RouterLink>
     </div>
 
     <Heading>{{ titulo }}</Heading>
+
+    <!-- Componente de Alerta UX -->
+    <div class="mt-6">
+      <Alerta
+        v-if="alerta.mostrar"
+        :tipo="alerta.tipo"
+        :duracion="4000"
+        @close="alerta.mostrar = false"
+      >
+        {{ alerta.mensaje }}
+      </Alerta>
+    </div>
 
     <div class="mx-auto my-8 bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
       <div class="mx-auto w-full py-10 px-8 sm:px-12">

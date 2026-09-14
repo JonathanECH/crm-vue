@@ -1,13 +1,32 @@
 {
   "clientes": [
     {
-      "id": 1,
       "nombre": "Juan",
-      "apellido": "Mendoza",
-      "correo": "[EMAIL_ADDRESS]",
-      "telefono": "0424-123-4321",
-      "empresa": "Mendoza y Asociados",
-      "puesto": "Gerente de Ventas"
+      "apellido": "Carlos",
+      "correo": "cliente@empresa.com",
+      "empresa": "",
+      "puesto": "",
+      "telefono": "",
+      "id": "h26Kn4n89mM"
+    },
+    {
+      "nombre": "Maria",
+      "apellido": "Patricia",
+      "correo": "mariaP@empresa.com",
+      "empresa": "La mera vrg",
+      "puesto": "La patrona",
+      "telefono": "",
+      "id": "LikaZyfHdcA"
+    },
+    {
+      "nombre": "Kevyn",
+      "apellido": "Camacaro",
+      "correo": "backend@empresa.com",
+      "empresa": "Localhost",
+      "puesto": "Gerente en IA xd",
+      "telefono": "",
+      "id": "Ib91ysRkBRY"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
