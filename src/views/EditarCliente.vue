@@ -35,7 +35,7 @@ defineProps({
   },
 });
 
-//--- Metodos ---
+//--- Métodos ---
 
 const handleAlertaClose = () => {
   alerta.mostrar = false;

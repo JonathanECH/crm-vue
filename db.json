@@ -8,7 +8,7 @@
       "puesto": "Dev",
       "telefono": "0412-986-5212",
       "id": "7FjaonAe7KM",
-      "estado": 0
+      "estado": false
     },
     {
       "nombre": "Maria",
@@ -18,7 +18,7 @@
       "puesto": "",
       "telefono": "",
       "id": "7mLcSlixyVg",
-      "estado": 1
+      "estado": true
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

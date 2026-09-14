@@ -25,12 +25,12 @@ defineProps({
   }
 });
 
-//--- Metodos ---
+//--- Métodos ---
+
 const existenClientes = computed(() => clientes.value.length > 0)
 //Cuando se ejecuta un cambio de estado se actualiza el estado del cliente en el array
 const cambiarEstado = (id, estado) => {
-  const estadoNuevo = estado === 1 ? 0 : 1;
-  ClienteService.cambiarEstado(id, estadoNuevo)
+  ClienteService.cambiarEstado(id, !estado)
     .then(({ data }) => {
       clientes.value = clientes.value.map(cliente => cliente.id === id ? data : cliente)
     })
@@ -61,7 +61,8 @@ const cambiarEstado = (id, estado) => {
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
                 <!--Componente Clientes-->
-                <Clientes v-for="cliente in clientes" :key="cliente.id" :cliente="cliente" @cambiar-estado="cambiarEstado"/>
+                <Clientes v-for="cliente in clientes" :key="cliente.id" :cliente="cliente"
+                  @cambiar-estado="cambiarEstado" />
               </tbody>
             </table>
 

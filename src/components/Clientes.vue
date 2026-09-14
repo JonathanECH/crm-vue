@@ -13,7 +13,7 @@ const nombreCliente = computed(() => {
 });
 
 const clienteEstado = computed(() => {
-  return props.cliente.estado === 1 ? 'Activo' : 'Inactivo'
+  return props.cliente.estado ? 'Activo' : 'Inactivo'
 });
 </script>
 
@@ -30,7 +30,7 @@ const clienteEstado = computed(() => {
     </td>
     <td class="whitespace-nowrap p-4 truncate text-center">
       <button class="block w-fit mx-auto px-4 py-1 text-sm font-bold rounded-full cursor-pointer"
-        :class="[cliente.estado === 1 ? 'bg-green-200 text-green-900' : 'bg-red-200 text-red-900']"
+        :class="[cliente.estado ? 'bg-green-200 text-green-900' : 'bg-red-200 text-red-900']"
         @click="$emit('cambiar-estado', cliente.id , cliente.estado)">{{ clienteEstado }}</button>
     </td>
     <td class="whitespace-nowrap p-4">
