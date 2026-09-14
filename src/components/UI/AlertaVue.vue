@@ -31,14 +31,18 @@ const visible = ref(true);
 
 const cerrarAlerta = () => {
   visible.value = false;
+};
+
+const onAfterLeave = () => {
   emit('close');
 };
 
 onMounted(() => {
   if (props.duracion > 0) {
+    const tiempoVisible = Math.max(props.duracion - 400, 300);
     setTimeout(() => {
       cerrarAlerta();
-    }, props.duracion);
+    }, tiempoVisible);
   }
 });
 
@@ -82,12 +86,14 @@ const tipoConfig = computed(() => {
 
 <template>
   <Transition
-    enter-active-class="transition-all duration-300 ease-out"
-    enter-from-class="opacity-0 -translate-y-2 scale-95"
+    appear
+    enter-active-class="transition-all duration-400 ease-out"
+    enter-from-class="opacity-0 -translate-y-3 scale-95"
     enter-to-class="opacity-100 translate-y-0 scale-100"
-    leave-active-class="transition-all duration-200 ease-in"
+    leave-active-class="transition-all duration-400 ease-in"
     leave-from-class="opacity-100 translate-y-0 scale-100"
-    leave-to-class="opacity-0 -translate-y-2 scale-95"
+    leave-to-class="opacity-0 -translate-y-3 scale-95"
+    @after-leave="onAfterLeave"
   >
     <div
       v-if="visible"
@@ -192,10 +198,10 @@ const tipoConfig = computed(() => {
         class="absolute bottom-0 left-0 right-0 h-1 bg-black/10 overflow-hidden"
       >
         <div
-          class="h-full transition-all"
+          class="h-full alerta-progress-bar"
           :class="tipoConfig.progressBarClass"
           :style="{
-            animation: `alertaProgress ${duracion}ms linear forwards`
+            animationDuration: `${duracion}ms`
           }"
         ></div>
       </div>
@@ -203,13 +209,19 @@ const tipoConfig = computed(() => {
   </Transition>
 </template>
 
-<style scoped>
+<style>
 @keyframes alertaProgress {
-  from {
+  0% {
     width: 100%;
   }
-  to {
+  100% {
     width: 0%;
   }
+}
+
+.alerta-progress-bar {
+  animation-name: alertaProgress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 </style>

@@ -11,6 +11,10 @@ const props = defineProps({
 const nombreCliente = computed(() => {
   return `${props.cliente.nombre} ${props.cliente.apellido}`
 })
+
+const clienteEstado = computed(() => {
+  return props.cliente.estado === 1 ? 'Activo' : 'Inactivo'
+})
 </script>
 
 <template>
@@ -25,7 +29,7 @@ const nombreCliente = computed(() => {
       <p class="text-sm text-gray-500">{{ cliente.puesto }}</p>
     </td>
     <td class="whitespace-nowrap p-4 truncate">
-      <p class="text-xl font-bold text-gray-900">{{ cliente.estado }}</p>
+      <p class="text-xl font-bold text-gray-900">{{ clienteEstado }}</p>
     </td>
     <td class="whitespace-nowrap p-4">
 

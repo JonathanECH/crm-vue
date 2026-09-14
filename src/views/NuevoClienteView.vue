@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from '../lib/axios';
+import ClienteService from '@/services/ClienteService';
 import RouterLink from '@/components/UI/RouterLink.vue';
 import Heading from '@/components/UI/HeadingVue.vue';
 import Alerta from '@/components/UI/AlertaVue.vue';
@@ -30,27 +30,26 @@ const cliente = reactive({
   puesto: '',
 });
 
+const handleAlertaClose = () => {
+  alerta.mostrar = false;
+  if (alerta.tipo === 'success') {
+    router.push({ name: 'listado-clientes' });
+  }
+};
+
 const handleSubmit = (data) => {
-  axios.post('/clientes', data)
+  data.estado = 1;
+  ClienteService.agregarCliente(data)
     .then(() => {
       alerta.tipo = 'success';
       alerta.mensaje = '¡El cliente se ha registrado con éxito! Redirigiendo al listado...';
       alerta.mostrar = true;
-
-      setTimeout(() => {
-        alerta.mostrar = false;
-        router.push({ name: 'listado-clientes' });
-      }, 4000);
     })
     .catch((error) => {
       console.error('Error al guardar el cliente:', error);
       alerta.tipo = 'error';
       alerta.mensaje = 'Hubo un error al registrar el cliente. Por favor, intenta nuevamente.';
       alerta.mostrar = true;
-
-      setTimeout(() => {
-        alerta.mostrar = false;
-      }, 4000);
     });
 };
 </script>
@@ -65,12 +64,7 @@ const handleSubmit = (data) => {
 
     <!-- Componente de Alerta UX -->
     <div class="mt-6">
-      <Alerta
-        v-if="alerta.mostrar"
-        :tipo="alerta.tipo"
-        :duracion="4000"
-        @close="alerta.mostrar = false"
-      >
+      <Alerta v-if="alerta.mostrar" :tipo="alerta.tipo" :duracion="4000" @close="handleAlertaClose">
         {{ alerta.mensaje }}
       </Alerta>
     </div>

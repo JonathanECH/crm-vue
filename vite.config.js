@@ -12,6 +12,11 @@ export default defineConfig({
     vueDevTools(),
     tailwindcss()
   ],
+  server: {
+    watch: {
+      ignored: ['**/db.json']
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

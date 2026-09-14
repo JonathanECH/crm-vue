@@ -1,15 +1,18 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue';
-import axios from '../lib/axios';
+import ClienteService from '@/services/ClienteService';
 import Clientes from '@/components/Clientes.vue'
 import RouterLink from '@/components/UI/RouterLink.vue';
 import Heading from '@/components/UI/HeadingVue.vue';
 
 const clientes = ref([])
-onMounted(() => {
-  axios('/clientes')
-    .then(({ data }) => clientes.value = data)
-    .catch(error => console.log(error))
+onMounted(async () => {
+  try {
+    const { data } = await ClienteService.obtenerClientes()
+    clientes.value = data
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 defineProps({
