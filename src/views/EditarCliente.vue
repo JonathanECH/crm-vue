@@ -7,10 +7,19 @@ import Heading from '@/components/UI/HeadingVue.vue';
 import Alerta from '@/components/UI/AlertaVue.vue';
 import { FormKit } from '@formkit/vue';
 
+//Variables
 const router = useRouter();
 const route = useRoute();
 const { id } = route.params;
 const formData = reactive({});
+
+const alerta = reactive({
+  mostrar: false,
+  tipo: 'success',
+  mensaje: ''
+});
+
+//Hook onMounted
 onMounted(() => {
   ClienteService.obtenerCliente(id)
     .then(({ data }) => {
@@ -26,13 +35,7 @@ defineProps({
   },
 });
 
-const alerta = reactive({
-  mostrar: false,
-  tipo: 'success',
-  mensaje: ''
-});
-
-
+//--- Metodos ---
 
 const handleAlertaClose = () => {
   alerta.mostrar = false;

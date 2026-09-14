@@ -1,11 +1,14 @@
 <script setup>
 import { onMounted, ref, computed } from 'vue';
 import ClienteService from '@/services/ClienteService';
-import Clientes from '@/components/Clientes.vue'
+import Clientes from '@/components/Clientes.vue';
 import RouterLink from '@/components/UI/RouterLink.vue';
 import Heading from '@/components/UI/HeadingVue.vue';
 
-const clientes = ref([])
+//Variables
+const clientes = ref([]);
+
+//Hook onMounted
 onMounted(async () => {
   try {
     const { data } = await ClienteService.obtenerClientes()
@@ -13,15 +16,26 @@ onMounted(async () => {
   } catch (error) {
     console.log(error)
   }
-})
+});
 
+// Props
 defineProps({
   titulo: {
     type: String
   }
-})
+});
 
+//--- Metodos ---
 const existenClientes = computed(() => clientes.value.length > 0)
+//Cuando se ejecuta un cambio de estado se actualiza el estado del cliente en el array
+const cambiarEstado = (id, estado) => {
+  const estadoNuevo = estado === 1 ? 0 : 1;
+  ClienteService.cambiarEstado(id, estadoNuevo)
+    .then(({ data }) => {
+      clientes.value = clientes.value.map(cliente => cliente.id === id ? data : cliente)
+    })
+    .catch(error => console.log('Error al cambiar estado: ', error))
+};
 </script>
 
 <template>
@@ -46,7 +60,8 @@ const existenClientes = computed(() => clientes.value.length > 0)
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-                <Clientes v-for="cliente in clientes" :key="cliente.id" :cliente="cliente" />
+                <!--Componente Clientes-->
+                <Clientes v-for="cliente in clientes" :key="cliente.id" :cliente="cliente" @cambiar-estado="cambiarEstado"/>
               </tbody>
             </table>
 

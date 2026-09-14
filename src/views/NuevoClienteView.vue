@@ -7,13 +7,8 @@ import Heading from '@/components/UI/HeadingVue.vue';
 import Alerta from '@/components/UI/AlertaVue.vue';
 import { FormKit } from '@formkit/vue';
 
+// Variables
 const router = useRouter();
-
-defineProps({
-  titulo: {
-    type: String
-  },
-});
 
 const alerta = reactive({
   mostrar: false,
@@ -21,15 +16,14 @@ const alerta = reactive({
   mensaje: ''
 });
 
-const cliente = reactive({
-  nombre: '',
-  apellido: '',
-  correo: '',
-  telefono: '',
-  empresa: '',
-  puesto: '',
+// Props
+defineProps({
+  titulo: {
+    type: String
+  },
 });
 
+// --- Métodos ---
 const handleAlertaClose = () => {
   alerta.mostrar = false;
   if (alerta.tipo === 'success') {

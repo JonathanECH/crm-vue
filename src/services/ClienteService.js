@@ -1,4 +1,4 @@
-import api from '@/lib/axios'
+import api from '@/lib/axios';
 
 export default {
   agregarCliente(data) {
@@ -7,13 +7,13 @@ export default {
   obtenerClientes() {
     return api.get('/clientes')
   },
-  cambiarEstado(data) {
-    return api.patch(`/clientes/${data.id}`, { estado: data.estado })
+  cambiarEstado(id, estado) {
+    return api.patch(`/clientes/${id}`, { estado: estado })
   },
   obtenerCliente(id) {
     return api.get(`/clientes/${id}`)
   },
   actualizarCliente(id, data) {
-    return api.put(`/clientes/${id}`, data)
+    return api.patch(`/clientes/${id}`, data)
   },
 }

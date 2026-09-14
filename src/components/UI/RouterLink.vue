@@ -4,7 +4,7 @@ defineProps({
   to: {
     type: String
   },
-})
+});
 </script>
 <template>
   <div>

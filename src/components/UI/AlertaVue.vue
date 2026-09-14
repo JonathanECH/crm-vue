@@ -178,7 +178,7 @@ const tipoConfig = computed(() => {
         <div v-if="dismissible" class="flex-shrink-0">
           <button
             type="button"
-            class="inline-flex rounded-lg p-1 hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors"
+            class="inline-flex rounded-lg p-1 hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors cursor-pointer"
             @click="cerrarAlerta"
             title="Cerrar notificación"
           >
