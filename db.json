@@ -1,7 +1,12 @@
 {
   "clientes": [
     {
-      "estado": 0,
+      "nombre": "Jonas",
+      "apellido": "Manuel",
+      "correo": "cliente@empresa.com",
+      "empresa": "",
+      "puesto": "",
+      "telefono": "0412-986-5212",
       "id": "7FjaonAe7KM"
     },
     {
@@ -11,7 +16,6 @@
       "empresa": "",
       "puesto": "",
       "telefono": "",
-      "estado": 1,
       "id": "7mLcSlixyVg"
     }
   ],

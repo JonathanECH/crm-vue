@@ -1,5 +1,6 @@
 <script setup>
 import { computed} from 'vue';
+import {RouterLink} from 'vue-router';
 import ClienteService from '@/services/ClienteService';
 const props = defineProps({
   cliente: {
@@ -33,10 +34,10 @@ const clienteEstado = computed(() => {
     </td>
     <td class="whitespace-nowrap p-4">
 
-      <div class="flex gap-2 justify-center">
-        <!-- <RouterLink :to="{ name: 'editar-cliente', params: { id: cliente.id } }"
-          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded text-xs">Editar</RouterLink> -->
-        <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded text-xs">Eliminar</button>
+      <div class="flex gap-2 justify-center"><!-- ? params es un objeto que se pasa a la ruta ej: clientes/7FjaonAe7KM-->
+        <RouterLink :to="{ name: 'editar-cliente', params: { id: cliente.id } }"
+          class="bg-blue-500 hover:bg-blue-600 text-indigo-100 font-bold py-2 px-4 rounded text-xs">Editar</RouterLink>
+        <button class="bg-red-500 hover:bg-red-600 text-indigo-100 font-bold py-2 px-4 rounded text-xs">Eliminar</button>
       </div>
     </td>
   </tr>
