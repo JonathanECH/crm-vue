@@ -6,5 +6,8 @@ export default {
   },
   obtenerClientes(){
     return api.get('/clientes')
+  },
+  cambiarEstado(data){
+    return api.patch(`/clientes/${data.id}`, {estado: data.estado})
   }
 }

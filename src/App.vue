@@ -1,5 +1,4 @@
 <script setup>
-import { reactive } from 'vue';
 import { RouterView } from 'vue-router';
 </script>
 
