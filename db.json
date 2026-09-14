@@ -1,0 +1,13 @@
+{
+  "clientes": [
+    {
+      "id": 1,
+      "nombre": "Juan",
+      "apellido": "Mendoza",
+      "correo": "[EMAIL_ADDRESS]",
+      "telefono": "0424-123-4321",
+      "empresa": "Mendoza y Asociados",
+      "puesto": "Gerente de Ventas"
+    }
+  ]
+}
